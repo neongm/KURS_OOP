@@ -39,7 +39,7 @@ namespace kursOOP {
 		{
 			InitializeComponent();
 			//
-			//TODO: добавьте код конструктора
+			//с TODO: добавьте код конструктора
 			//
 		}
 
@@ -112,6 +112,10 @@ namespace kursOOP {
 	private: System::Windows::Forms::NumericUpDown^ sort_test_amount;
 	private: System::Windows::Forms::CheckBox^ sort_reverse_checkbox;
 	private: System::Windows::Forms::Label^ label15;
+	private: System::Windows::Forms::Label^ label16;
+	private: System::Windows::Forms::NumericUpDown^ numericUpDown_load;
+
+	private: System::Windows::Forms::Label^ label17;
 
 
 
@@ -169,7 +173,10 @@ namespace kursOOP {
 			this->panel6 = (gcnew System::Windows::Forms::Panel());
 			this->panel7 = (gcnew System::Windows::Forms::Panel());
 			this->panel10 = (gcnew System::Windows::Forms::Panel());
-			this->sort_reverse_checkbox = (gcnew System::Windows::Forms::CheckBox());
+			this->label17 = (gcnew System::Windows::Forms::Label());
+			this->label16 = (gcnew System::Windows::Forms::Label());
+			this->numericUpDown_load = (gcnew System::Windows::Forms::NumericUpDown());
+			this->label15 = (gcnew System::Windows::Forms::Label());
 			this->panel9 = (gcnew System::Windows::Forms::Panel());
 			this->label14 = (gcnew System::Windows::Forms::Label());
 			this->sort_test_amount = (gcnew System::Windows::Forms::NumericUpDown());
@@ -181,7 +188,7 @@ namespace kursOOP {
 			this->label11 = (gcnew System::Windows::Forms::Label());
 			this->button5 = (gcnew System::Windows::Forms::Button());
 			this->label9 = (gcnew System::Windows::Forms::Label());
-			this->label15 = (gcnew System::Windows::Forms::Label());
+			this->sort_reverse_checkbox = (gcnew System::Windows::Forms::CheckBox());
 			this->panel1->SuspendLayout();
 			this->panel4->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown2))->BeginInit();
@@ -198,6 +205,7 @@ namespace kursOOP {
 			this->panel6->SuspendLayout();
 			this->panel7->SuspendLayout();
 			this->panel10->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown_load))->BeginInit();
 			this->panel9->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sort_test_amount))->BeginInit();
 			this->panel8->SuspendLayout();
@@ -262,11 +270,11 @@ namespace kursOOP {
 			// 
 			this->numericUpDown2->Location = System::Drawing::Point(3, 26);
 			this->numericUpDown2->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 20, 0, 0, 0 });
-			this->numericUpDown2->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 2, 0, 0, 0 });
+			this->numericUpDown2->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 4, 0, 0, 0 });
 			this->numericUpDown2->Name = L"numericUpDown2";
 			this->numericUpDown2->Size = System::Drawing::Size(95, 20);
 			this->numericUpDown2->TabIndex = 9;
-			this->numericUpDown2->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 2, 0, 0, 0 });
+			this->numericUpDown2->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10, 0, 0, 0 });
 			// 
 			// label3
 			// 
@@ -545,22 +553,50 @@ namespace kursOOP {
 			// panel10
 			// 
 			this->panel10->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->panel10->Controls->Add(this->label17);
+			this->panel10->Controls->Add(this->label16);
+			this->panel10->Controls->Add(this->numericUpDown_load);
 			this->panel10->Controls->Add(this->label15);
-			this->panel10->Controls->Add(this->sort_reverse_checkbox);
 			this->panel10->Location = System::Drawing::Point(6, 16);
 			this->panel10->Name = L"panel10";
 			this->panel10->Size = System::Drawing::Size(106, 70);
 			this->panel10->TabIndex = 3;
 			// 
-			// sort_reverse_checkbox
+			// label17
 			// 
-			this->sort_reverse_checkbox->AutoSize = true;
-			this->sort_reverse_checkbox->Location = System::Drawing::Point(3, 3);
-			this->sort_reverse_checkbox->Name = L"sort_reverse_checkbox";
-			this->sort_reverse_checkbox->Size = System::Drawing::Size(67, 17);
-			this->sort_reverse_checkbox->TabIndex = 2;
-			this->sort_reverse_checkbox->Text = L"reversed";
-			this->sort_reverse_checkbox->UseVisualStyleBackColor = true;
+			this->label17->AutoSize = true;
+			this->label17->Location = System::Drawing::Point(10, 14);
+			this->label17->Name = L"label17";
+			this->label17->Size = System::Drawing::Size(80, 13);
+			this->label17->TabIndex = 18;
+			this->label17->Text = L"вес элемента:";
+			// 
+			// label16
+			// 
+			this->label16->AutoSize = true;
+			this->label16->Location = System::Drawing::Point(4, 4);
+			this->label16->Name = L"label16";
+			this->label16->Size = System::Drawing::Size(0, 13);
+			this->label16->TabIndex = 17;
+			// 
+			// numericUpDown_load
+			// 
+			this->numericUpDown_load->Location = System::Drawing::Point(10, 29);
+			this->numericUpDown_load->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000, 0, 0, 0 });
+			this->numericUpDown_load->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
+			this->numericUpDown_load->Name = L"numericUpDown_load";
+			this->numericUpDown_load->Size = System::Drawing::Size(77, 20);
+			this->numericUpDown_load->TabIndex = 16;
+			this->numericUpDown_load->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000, 0, 0, 0 });
+			// 
+			// label15
+			// 
+			this->label15->AutoSize = true;
+			this->label15->Location = System::Drawing::Point(7, 52);
+			this->label15->Name = L"label15";
+			this->label15->Size = System::Drawing::Size(90, 13);
+			this->label15->TabIndex = 3;
+			this->label15->Text = L"дополнительное";
 			// 
 			// panel9
 			// 
@@ -585,11 +621,11 @@ namespace kursOOP {
 			// 
 			this->sort_test_amount->Location = System::Drawing::Point(3, 29);
 			this->sort_test_amount->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 20, 0, 0, 0 });
-			this->sort_test_amount->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 2, 0, 0, 0 });
+			this->sort_test_amount->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 4, 0, 0, 0 });
 			this->sort_test_amount->Name = L"sort_test_amount";
 			this->sort_test_amount->Size = System::Drawing::Size(95, 20);
 			this->sort_test_amount->TabIndex = 10;
-			this->sort_test_amount->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 2, 0, 0, 0 });
+			this->sort_test_amount->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10, 0, 0, 0 });
 			// 
 			// panel8
 			// 
@@ -665,20 +701,21 @@ namespace kursOOP {
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(130, 0);
+			this->label9->Location = System::Drawing::Point(80, 0);
 			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(66, 13);
+			this->label9->Size = System::Drawing::Size(190, 13);
 			this->label9->TabIndex = 0;
-			this->label9->Text = L"сортировка";
+			this->label9->Text = L"заполнение объёмными объектами";
 			// 
-			// label15
+			// sort_reverse_checkbox
 			// 
-			this->label15->AutoSize = true;
-			this->label15->Location = System::Drawing::Point(7, 52);
-			this->label15->Name = L"label15";
-			this->label15->Size = System::Drawing::Size(90, 13);
-			this->label15->TabIndex = 3;
-			this->label15->Text = L"дополнительное";
+			this->sort_reverse_checkbox->AutoSize = true;
+			this->sort_reverse_checkbox->Location = System::Drawing::Point(170, 349);
+			this->sort_reverse_checkbox->Name = L"sort_reverse_checkbox";
+			this->sort_reverse_checkbox->Size = System::Drawing::Size(64, 17);
+			this->sort_reverse_checkbox->TabIndex = 2;
+			this->sort_reverse_checkbox->Text = L"в центр";
+			this->sort_reverse_checkbox->UseVisualStyleBackColor = true;
 			// 
 			// MyForm
 			// 
@@ -688,6 +725,7 @@ namespace kursOOP {
 			this->ClientSize = System::Drawing::Size(1218, 545);
 			this->Controls->Add(this->panel7);
 			this->Controls->Add(this->panel6);
+			this->Controls->Add(this->sort_reverse_checkbox);
 			this->Controls->Add(this->panel5);
 			this->Controls->Add(this->panel1);
 			this->Name = L"MyForm";
@@ -715,6 +753,7 @@ namespace kursOOP {
 			this->panel7->PerformLayout();
 			this->panel10->ResumeLayout(false);
 			this->panel10->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown_load))->EndInit();
 			this->panel9->ResumeLayout(false);
 			this->panel9->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sort_test_amount))->EndInit();
@@ -723,6 +762,7 @@ namespace kursOOP {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sort_stop_value))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sort_start_value))->EndInit();
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 #pragma endregion
@@ -807,7 +847,7 @@ namespace kursOOP {
 
 
 
-
+		
 		// FILL TEST
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		int amount_min = DecToInt(numericUpDown1->Value);
@@ -927,6 +967,8 @@ private: System::Void numericUpDown5_ValueChanged(System::Object^ sender, System
 		number_of_tests -= 1;
 		bool reverse = false;
 		// место для проверок
+
+
 		GL_POINTS_VECTOR.resize(0);
 
 		if (vec_reserve_checkbox->Checked) reverse = true;
@@ -936,7 +978,7 @@ private: System::Void numericUpDown5_ValueChanged(System::Object^ sender, System
 			GL_VECTOR.resize(0);
 			int amount = amount_min + (amount_max - amount_min) / number_of_tests * i;
 			rnd::fill_random_integers(GL_VECTOR, amount);
-			int res = timed_tests::sorting(GL_VECTOR, reverse);
+			int res = timed_tests::fill_big_struct(true, (amount_max - amount_min) / number_of_tests * i, (size_t)amount / 2, DecToInt(numericUpDown_load->Value));
 			GL_POINTS_VECTOR.push_back(res);
 		}
 		GL_POINTS_LIST.resize(0);
@@ -946,8 +988,8 @@ private: System::Void numericUpDown5_ValueChanged(System::Object^ sender, System
 			GL_LIST.resize(0);
 			int amount = amount_min + (amount_max - amount_min) / number_of_tests * i;
 			rnd::fill_random_integers(GL_VECTOR, amount);
-			//int res = timed_tests::sorting(GL_LIST, reverse);
-			GL_POINTS_LIST.push_back(0);
+			int res = timed_tests::fill_big_struct(false, (amount_max - amount_min) / number_of_tests * i, (size_t)amount / 2, DecToInt(numericUpDown_load->Value));
+			GL_POINTS_LIST.push_back(res);
 		}
 		graph_refresh();
 		update_data();

@@ -88,4 +88,73 @@ namespace timed_tests {
 		return elapsed_ms.count();
 	}
 
+
+	class book
+	{
+	private:
+		size_t id;
+		std::vector<std::string> tags;
+		std::vector<std::string> load;
+		std::string description;
+		std::string src_link;
+
+	public:
+		void set_defaults(size_t _size)
+		{
+			tags = { "war", "peace", "nove", "tolstoy", "example", "example" , "example" , "example" , "example" , "example" , "example" , "example" };
+			description = "–оман-эпопе€, описывающий представителей высшего двор€нского сослови€, оказавшихс€ в плену любовного треугольника. ѕережива€ множество испытаний, каждый из героев переосмысливает свою жизнь и отношени€ с другими геро€ми на фоне войны 1812 года, изменившей все общество";
+
+			for (size_t i = 0; i < _size; i++) load.push_back(description);
+
+			src_link = "https://ilibrary.ru/text/11/index.html";
+		}
+
+		book() { set_defaults(1); }
+
+		book(size_t _id, size_t _size = 4)
+		{
+			id = _id;
+			set_defaults(_size);
+		}
+	};
+
+
+
+	size_t fill_big_struct(bool cont_type, size_t amount, size_t pos, size_t load = 1)
+	{
+		size_t time;
+		size_t aa = 2;
+
+
+		if (cont_type) 
+		{
+			std::vector<book> cont(amount);
+
+			auto begin = std::chrono::steady_clock::now();
+			for (size_t i = 0; i < amount; i++)
+			{
+				book buk = book(i, load);
+				cont.insert(cont.begin() + pos, buk);
+			}
+			auto end = std::chrono::steady_clock::now();
+			time = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count();
+		}
+		else
+		{
+			std::list<book> cont(amount);
+
+			std::list<book>::iterator it = cont.begin();
+			std::advance(it, pos);
+			auto begin = std::chrono::steady_clock::now();
+			for (size_t i = 0; i < amount; i++)
+			{
+				book buk = book(i, load);
+				cont.insert(it, buk);
+			}
+			auto end = std::chrono::steady_clock::now();
+			time = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count();
+		}
+
+		return time;
+	}
 }
