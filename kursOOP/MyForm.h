@@ -7,6 +7,10 @@
 #include "rand_gen.h"
 #include <algorithm>
 
+
+#include "debug_handler.h"
+debug_handler DH = debug_handler();
+
 std::vector<int> GL_VECTOR;
 std::list<int> GL_LIST;
 
@@ -76,12 +80,12 @@ namespace kursOOP {
 
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::Label^ label6;
-	private: System::Windows::Forms::CheckBox^ checkBox1;
-	private: System::Windows::Forms::Button^ button3;
+
+
 	private: System::Windows::Forms::Panel^ panel5;
-	private: System::Windows::Forms::Button^ button4;
-	private: System::Windows::Forms::Label^ label7;
-	private: System::Windows::Forms::NumericUpDown^ array_size_numeric;
+
+
+
 	private: System::Windows::Forms::TabControl^ graph;
 
 	private: System::Windows::Forms::TabPage^ tabPage1;
@@ -110,12 +114,38 @@ namespace kursOOP {
 	private: System::Windows::Forms::Label^ label9;
 	private: System::Windows::Forms::Label^ label14;
 	private: System::Windows::Forms::NumericUpDown^ sort_test_amount;
-	private: System::Windows::Forms::CheckBox^ sort_reverse_checkbox;
+
 	private: System::Windows::Forms::Label^ label15;
 	private: System::Windows::Forms::Label^ label16;
 	private: System::Windows::Forms::NumericUpDown^ numericUpDown_load;
 
 	private: System::Windows::Forms::Label^ label17;
+	private: System::Windows::Forms::CheckBox^ checkbox_vector2_reserve;
+	private: System::Windows::Forms::Panel^ panel11;
+	private: System::Windows::Forms::Panel^ panel12;
+	private: System::Windows::Forms::Label^ label18;
+	private: System::Windows::Forms::Label^ label19;
+	private: System::Windows::Forms::NumericUpDown^ numeric_iter_weight;
+
+
+	private: System::Windows::Forms::Label^ label20;
+	private: System::Windows::Forms::Panel^ panel13;
+	private: System::Windows::Forms::Label^ label21;
+	private: System::Windows::Forms::NumericUpDown^ numeric_test_amount;
+
+	private: System::Windows::Forms::Panel^ panel14;
+	private: System::Windows::Forms::NumericUpDown^ numeric_iters_to;
+
+
+	private: System::Windows::Forms::Label^ label24;
+	private: System::Windows::Forms::Button^ test_iteration_run;
+
+	private: System::Windows::Forms::Label^ label25;
+	private: System::Windows::Forms::Label^ label23;
+	private: System::Windows::Forms::Label^ label22;
+	private: System::Windows::Forms::NumericUpDown^ numeric_iters_from;
+private: System::Windows::Forms::CheckBox^ checkBox3;
+private: System::Windows::Forms::CheckBox^ checkBox2;
 
 
 
@@ -160,19 +190,17 @@ namespace kursOOP {
 			this->vector_listbox = (gcnew System::Windows::Forms::ListBox());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
-			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->panel5 = (gcnew System::Windows::Forms::Panel());
-			this->label7 = (gcnew System::Windows::Forms::Label());
-			this->array_size_numeric = (gcnew System::Windows::Forms::NumericUpDown());
-			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->graph = (gcnew System::Windows::Forms::TabControl());
 			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
 			this->picture_box_graph = (gcnew System::Windows::Forms::PictureBox());
 			this->tabPage2 = (gcnew System::Windows::Forms::TabPage());
+			this->checkBox3 = (gcnew System::Windows::Forms::CheckBox());
+			this->checkBox2 = (gcnew System::Windows::Forms::CheckBox());
 			this->panel6 = (gcnew System::Windows::Forms::Panel());
 			this->panel7 = (gcnew System::Windows::Forms::Panel());
 			this->panel10 = (gcnew System::Windows::Forms::Panel());
+			this->checkbox_vector2_reserve = (gcnew System::Windows::Forms::CheckBox());
 			this->label17 = (gcnew System::Windows::Forms::Label());
 			this->label16 = (gcnew System::Windows::Forms::Label());
 			this->numericUpDown_load = (gcnew System::Windows::Forms::NumericUpDown());
@@ -188,7 +216,23 @@ namespace kursOOP {
 			this->label11 = (gcnew System::Windows::Forms::Label());
 			this->button5 = (gcnew System::Windows::Forms::Button());
 			this->label9 = (gcnew System::Windows::Forms::Label());
-			this->sort_reverse_checkbox = (gcnew System::Windows::Forms::CheckBox());
+			this->panel11 = (gcnew System::Windows::Forms::Panel());
+			this->panel12 = (gcnew System::Windows::Forms::Panel());
+			this->label18 = (gcnew System::Windows::Forms::Label());
+			this->label19 = (gcnew System::Windows::Forms::Label());
+			this->numeric_iter_weight = (gcnew System::Windows::Forms::NumericUpDown());
+			this->label20 = (gcnew System::Windows::Forms::Label());
+			this->panel13 = (gcnew System::Windows::Forms::Panel());
+			this->label21 = (gcnew System::Windows::Forms::Label());
+			this->numeric_test_amount = (gcnew System::Windows::Forms::NumericUpDown());
+			this->panel14 = (gcnew System::Windows::Forms::Panel());
+			this->label23 = (gcnew System::Windows::Forms::Label());
+			this->label22 = (gcnew System::Windows::Forms::Label());
+			this->numeric_iters_from = (gcnew System::Windows::Forms::NumericUpDown());
+			this->numeric_iters_to = (gcnew System::Windows::Forms::NumericUpDown());
+			this->label24 = (gcnew System::Windows::Forms::Label());
+			this->test_iteration_run = (gcnew System::Windows::Forms::Button());
+			this->label25 = (gcnew System::Windows::Forms::Label());
 			this->panel1->SuspendLayout();
 			this->panel4->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown2))->BeginInit();
@@ -197,7 +241,6 @@ namespace kursOOP {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown1))->BeginInit();
 			this->panel2->SuspendLayout();
 			this->panel5->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->array_size_numeric))->BeginInit();
 			this->graph->SuspendLayout();
 			this->tabPage1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picture_box_graph))->BeginInit();
@@ -211,6 +254,14 @@ namespace kursOOP {
 			this->panel8->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sort_stop_value))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sort_start_value))->BeginInit();
+			this->panel11->SuspendLayout();
+			this->panel12->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_iter_weight))->BeginInit();
+			this->panel13->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_test_amount))->BeginInit();
+			this->panel14->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_iters_from))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_iters_to))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// button1
@@ -390,7 +441,7 @@ namespace kursOOP {
 			this->list_listbox->FormattingEnabled = true;
 			this->list_listbox->Location = System::Drawing::Point(118, 16);
 			this->list_listbox->Name = L"list_listbox";
-			this->list_listbox->Size = System::Drawing::Size(96, 394);
+			this->list_listbox->Size = System::Drawing::Size(96, 472);
 			this->list_listbox->TabIndex = 6;
 			// 
 			// vector_listbox
@@ -398,7 +449,7 @@ namespace kursOOP {
 			this->vector_listbox->FormattingEnabled = true;
 			this->vector_listbox->Location = System::Drawing::Point(11, 16);
 			this->vector_listbox->Name = L"vector_listbox";
-			this->vector_listbox->Size = System::Drawing::Size(96, 394);
+			this->vector_listbox->Size = System::Drawing::Size(96, 472);
 			this->vector_listbox->TabIndex = 7;
 			// 
 			// label5
@@ -406,49 +457,23 @@ namespace kursOOP {
 			this->label5->AutoSize = true;
 			this->label5->Location = System::Drawing::Point(8, 0);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(38, 13);
+			this->label5->Size = System::Drawing::Size(60, 13);
 			this->label5->TabIndex = 8;
-			this->label5->Text = L"Vector";
+			this->label5->Text = L"Vector time";
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
 			this->label6->Location = System::Drawing::Point(115, 0);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(23, 13);
+			this->label6->Size = System::Drawing::Size(45, 13);
 			this->label6->TabIndex = 9;
-			this->label6->Text = L"List";
-			// 
-			// checkBox1
-			// 
-			this->checkBox1->AutoSize = true;
-			this->checkBox1->Location = System::Drawing::Point(11, 482);
-			this->checkBox1->Name = L"checkBox1";
-			this->checkBox1->Size = System::Drawing::Size(133, 17);
-			this->checkBox1->TabIndex = 10;
-			this->checkBox1->Text = L"выводить полностью";
-			this->checkBox1->UseVisualStyleBackColor = true;
-			this->checkBox1->CheckedChanged += gcnew System::EventHandler(this, &MyForm::checkBox1_CheckedChanged);
-			// 
-			// button3
-			// 
-			this->button3->Location = System::Drawing::Point(11, 416);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(96, 23);
-			this->button3->TabIndex = 11;
-			this->button3->Text = L"generate";
-			this->button3->UseVisualStyleBackColor = true;
-			this->button3->Click += gcnew System::EventHandler(this, &MyForm::button3_Click);
+			this->label6->Text = L"List time";
 			// 
 			// panel5
 			// 
 			this->panel5->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->panel5->Controls->Add(this->label7);
-			this->panel5->Controls->Add(this->array_size_numeric);
-			this->panel5->Controls->Add(this->button4);
 			this->panel5->Controls->Add(this->label5);
-			this->panel5->Controls->Add(this->checkBox1);
-			this->panel5->Controls->Add(this->button3);
 			this->panel5->Controls->Add(this->vector_listbox);
 			this->panel5->Controls->Add(this->label6);
 			this->panel5->Controls->Add(this->list_listbox);
@@ -456,35 +481,6 @@ namespace kursOOP {
 			this->panel5->Name = L"panel5";
 			this->panel5->Size = System::Drawing::Size(228, 507);
 			this->panel5->TabIndex = 12;
-			// 
-			// label7
-			// 
-			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(9, 442);
-			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(132, 13);
-			this->label7->TabIndex = 14;
-			this->label7->Text = L"колличество элементов:";
-			// 
-			// array_size_numeric
-			// 
-			this->array_size_numeric->Location = System::Drawing::Point(11, 458);
-			this->array_size_numeric->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10000000, 0, 0, 0 });
-			this->array_size_numeric->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 100, 0, 0, 0 });
-			this->array_size_numeric->Name = L"array_size_numeric";
-			this->array_size_numeric->Size = System::Drawing::Size(203, 20);
-			this->array_size_numeric->TabIndex = 13;
-			this->array_size_numeric->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 100, 0, 0, 0 });
-			// 
-			// button4
-			// 
-			this->button4->Location = System::Drawing::Point(118, 416);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(96, 23);
-			this->button4->TabIndex = 12;
-			this->button4->Text = L"generate";
-			this->button4->UseVisualStyleBackColor = true;
-			this->button4->Click += gcnew System::EventHandler(this, &MyForm::button4_Click);
 			// 
 			// graph
 			// 
@@ -518,6 +514,8 @@ namespace kursOOP {
 			// 
 			// tabPage2
 			// 
+			this->tabPage2->Controls->Add(this->checkBox3);
+			this->tabPage2->Controls->Add(this->checkBox2);
 			this->tabPage2->Controls->Add(this->button2);
 			this->tabPage2->Controls->Add(this->listBox1);
 			this->tabPage2->Location = System::Drawing::Point(4, 22);
@@ -527,6 +525,32 @@ namespace kursOOP {
 			this->tabPage2->TabIndex = 1;
 			this->tabPage2->Text = L"отладка";
 			this->tabPage2->UseVisualStyleBackColor = true;
+			// 
+			// checkBox3
+			// 
+			this->checkBox3->AutoSize = true;
+			this->checkBox3->Checked = true;
+			this->checkBox3->CheckState = System::Windows::Forms::CheckState::Checked;
+			this->checkBox3->Location = System::Drawing::Point(201, 446);
+			this->checkBox3->Name = L"checkBox3";
+			this->checkBox3->Size = System::Drawing::Size(62, 17);
+			this->checkBox3->TabIndex = 6;
+			this->checkBox3->Text = L"prefixes";
+			this->checkBox3->UseVisualStyleBackColor = true;
+			this->checkBox3->CheckedChanged += gcnew System::EventHandler(this, &MyForm::checkBox3_CheckedChanged);
+			// 
+			// checkBox2
+			// 
+			this->checkBox2->AutoSize = true;
+			this->checkBox2->Checked = true;
+			this->checkBox2->CheckState = System::Windows::Forms::CheckState::Checked;
+			this->checkBox2->Location = System::Drawing::Point(118, 446);
+			this->checkBox2->Name = L"checkBox2";
+			this->checkBox2->Size = System::Drawing::Size(76, 17);
+			this->checkBox2->TabIndex = 5;
+			this->checkBox2->Text = L"debug info";
+			this->checkBox2->UseVisualStyleBackColor = true;
+			this->checkBox2->CheckedChanged += gcnew System::EventHandler(this, &MyForm::checkBox2_CheckedChanged);
 			// 
 			// panel6
 			// 
@@ -553,6 +577,7 @@ namespace kursOOP {
 			// panel10
 			// 
 			this->panel10->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->panel10->Controls->Add(this->checkbox_vector2_reserve);
 			this->panel10->Controls->Add(this->label17);
 			this->panel10->Controls->Add(this->label16);
 			this->panel10->Controls->Add(this->numericUpDown_load);
@@ -562,10 +587,20 @@ namespace kursOOP {
 			this->panel10->Size = System::Drawing::Size(106, 70);
 			this->panel10->TabIndex = 3;
 			// 
+			// checkbox_vector2_reserve
+			// 
+			this->checkbox_vector2_reserve->AutoSize = true;
+			this->checkbox_vector2_reserve->Location = System::Drawing::Point(3, 3);
+			this->checkbox_vector2_reserve->Name = L"checkbox_vector2_reserve";
+			this->checkbox_vector2_reserve->Size = System::Drawing::Size(94, 17);
+			this->checkbox_vector2_reserve->TabIndex = 2;
+			this->checkbox_vector2_reserve->Text = L"vector reserve";
+			this->checkbox_vector2_reserve->UseVisualStyleBackColor = true;
+			// 
 			// label17
 			// 
 			this->label17->AutoSize = true;
-			this->label17->Location = System::Drawing::Point(10, 14);
+			this->label17->Location = System::Drawing::Point(7, 16);
 			this->label17->Name = L"label17";
 			this->label17->Size = System::Drawing::Size(80, 13);
 			this->label17->TabIndex = 18;
@@ -581,13 +616,13 @@ namespace kursOOP {
 			// 
 			// numericUpDown_load
 			// 
-			this->numericUpDown_load->Location = System::Drawing::Point(10, 29);
+			this->numericUpDown_load->Location = System::Drawing::Point(7, 31);
 			this->numericUpDown_load->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000, 0, 0, 0 });
 			this->numericUpDown_load->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
 			this->numericUpDown_load->Name = L"numericUpDown_load";
 			this->numericUpDown_load->Size = System::Drawing::Size(77, 20);
 			this->numericUpDown_load->TabIndex = 16;
-			this->numericUpDown_load->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000, 0, 0, 0 });
+			this->numericUpDown_load->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 500, 0, 0, 0 });
 			// 
 			// label15
 			// 
@@ -643,23 +678,23 @@ namespace kursOOP {
 			// sort_stop_value
 			// 
 			this->sort_stop_value->Location = System::Drawing::Point(23, 29);
-			this->sort_stop_value->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 99999999, 0, 0, 0 });
-			this->sort_stop_value->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 100, 0, 0, 0 });
+			this->sort_stop_value->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 9999, 0, 0, 0 });
+			this->sort_stop_value->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10, 0, 0, 0 });
 			this->sort_stop_value->Name = L"sort_stop_value";
 			this->sort_stop_value->Size = System::Drawing::Size(75, 20);
 			this->sort_stop_value->TabIndex = 10;
-			this->sort_stop_value->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 100000, 0, 0, 0 });
+			this->sort_stop_value->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000, 0, 0, 0 });
 			this->sort_stop_value->ValueChanged += gcnew System::EventHandler(this, &MyForm::numericUpDown5_ValueChanged);
 			// 
 			// sort_start_value
 			// 
 			this->sort_start_value->Location = System::Drawing::Point(23, 7);
-			this->sort_start_value->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 9999999, 0, 0, 0 });
-			this->sort_start_value->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 100, 0, 0, 0 });
+			this->sort_start_value->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000, 0, 0, 0 });
+			this->sort_start_value->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10, 0, 0, 0 });
 			this->sort_start_value->Name = L"sort_start_value";
 			this->sort_start_value->Size = System::Drawing::Size(75, 20);
 			this->sort_start_value->TabIndex = 9;
-			this->sort_start_value->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000, 0, 0, 0 });
+			this->sort_start_value->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 100, 0, 0, 0 });
 			// 
 			// label13
 			// 
@@ -707,15 +742,174 @@ namespace kursOOP {
 			this->label9->TabIndex = 0;
 			this->label9->Text = L"заполнение объёмными объектами";
 			// 
-			// sort_reverse_checkbox
+			// panel11
 			// 
-			this->sort_reverse_checkbox->AutoSize = true;
-			this->sort_reverse_checkbox->Location = System::Drawing::Point(170, 349);
-			this->sort_reverse_checkbox->Name = L"sort_reverse_checkbox";
-			this->sort_reverse_checkbox->Size = System::Drawing::Size(64, 17);
-			this->sort_reverse_checkbox->TabIndex = 2;
-			this->sort_reverse_checkbox->Text = L"в центр";
-			this->sort_reverse_checkbox->UseVisualStyleBackColor = true;
+			this->panel11->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->panel11->Controls->Add(this->panel12);
+			this->panel11->Controls->Add(this->panel13);
+			this->panel11->Controls->Add(this->panel14);
+			this->panel11->Controls->Add(this->test_iteration_run);
+			this->panel11->Controls->Add(this->label25);
+			this->panel11->Location = System::Drawing::Point(12, 275);
+			this->panel11->Name = L"panel11";
+			this->panel11->Size = System::Drawing::Size(337, 125);
+			this->panel11->TabIndex = 16;
+			// 
+			// panel12
+			// 
+			this->panel12->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->panel12->Controls->Add(this->label18);
+			this->panel12->Controls->Add(this->label19);
+			this->panel12->Controls->Add(this->numeric_iter_weight);
+			this->panel12->Controls->Add(this->label20);
+			this->panel12->Location = System::Drawing::Point(6, 16);
+			this->panel12->Name = L"panel12";
+			this->panel12->Size = System::Drawing::Size(106, 70);
+			this->panel12->TabIndex = 3;
+			// 
+			// label18
+			// 
+			this->label18->AutoSize = true;
+			this->label18->Location = System::Drawing::Point(4, 14);
+			this->label18->Name = L"label18";
+			this->label18->Size = System::Drawing::Size(80, 13);
+			this->label18->TabIndex = 18;
+			this->label18->Text = L"вес элемента:";
+			// 
+			// label19
+			// 
+			this->label19->AutoSize = true;
+			this->label19->Location = System::Drawing::Point(4, 4);
+			this->label19->Name = L"label19";
+			this->label19->Size = System::Drawing::Size(0, 13);
+			this->label19->TabIndex = 17;
+			// 
+			// numeric_iter_weight
+			// 
+			this->numeric_iter_weight->Location = System::Drawing::Point(7, 30);
+			this->numeric_iter_weight->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10000, 0, 0, 0 });
+			this->numeric_iter_weight->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
+			this->numeric_iter_weight->Name = L"numeric_iter_weight";
+			this->numeric_iter_weight->Size = System::Drawing::Size(77, 20);
+			this->numeric_iter_weight->TabIndex = 16;
+			this->numeric_iter_weight->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 500, 0, 0, 0 });
+			// 
+			// label20
+			// 
+			this->label20->AutoSize = true;
+			this->label20->Location = System::Drawing::Point(7, 52);
+			this->label20->Name = L"label20";
+			this->label20->Size = System::Drawing::Size(90, 13);
+			this->label20->TabIndex = 3;
+			this->label20->Text = L"дополнительное";
+			// 
+			// panel13
+			// 
+			this->panel13->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->panel13->Controls->Add(this->label21);
+			this->panel13->Controls->Add(this->numeric_test_amount);
+			this->panel13->Location = System::Drawing::Point(227, 16);
+			this->panel13->Name = L"panel13";
+			this->panel13->Size = System::Drawing::Size(103, 70);
+			this->panel13->TabIndex = 3;
+			// 
+			// label21
+			// 
+			this->label21->AutoSize = true;
+			this->label21->Location = System::Drawing::Point(29, 52);
+			this->label21->Name = L"label21";
+			this->label21->Size = System::Drawing::Size(41, 13);
+			this->label21->TabIndex = 11;
+			this->label21->Text = L"тестов";
+			// 
+			// numeric_test_amount
+			// 
+			this->numeric_test_amount->Location = System::Drawing::Point(3, 29);
+			this->numeric_test_amount->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 20, 0, 0, 0 });
+			this->numeric_test_amount->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 4, 0, 0, 0 });
+			this->numeric_test_amount->Name = L"numeric_test_amount";
+			this->numeric_test_amount->Size = System::Drawing::Size(95, 20);
+			this->numeric_test_amount->TabIndex = 10;
+			this->numeric_test_amount->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10, 0, 0, 0 });
+			// 
+			// panel14
+			// 
+			this->panel14->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->panel14->Controls->Add(this->label23);
+			this->panel14->Controls->Add(this->label22);
+			this->panel14->Controls->Add(this->numeric_iters_from);
+			this->panel14->Controls->Add(this->numeric_iters_to);
+			this->panel14->Controls->Add(this->label24);
+			this->panel14->Location = System::Drawing::Point(118, 16);
+			this->panel14->Name = L"panel14";
+			this->panel14->Size = System::Drawing::Size(103, 70);
+			this->panel14->TabIndex = 2;
+			// 
+			// label23
+			// 
+			this->label23->AutoSize = true;
+			this->label23->Location = System::Drawing::Point(2, 31);
+			this->label23->Name = L"label23";
+			this->label23->Size = System::Drawing::Size(19, 13);
+			this->label23->TabIndex = 11;
+			this->label23->Text = L"до";
+			// 
+			// label22
+			// 
+			this->label22->AutoSize = true;
+			this->label22->Location = System::Drawing::Point(2, 9);
+			this->label22->Name = L"label22";
+			this->label22->Size = System::Drawing::Size(18, 13);
+			this->label22->TabIndex = 11;
+			this->label22->Text = L"от";
+			// 
+			// numeric_iters_from
+			// 
+			this->numeric_iters_from->Location = System::Drawing::Point(23, 7);
+			this->numeric_iters_from->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 900, 0, 0, 0 });
+			this->numeric_iters_from->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
+			this->numeric_iters_from->Name = L"numeric_iters_from";
+			this->numeric_iters_from->Size = System::Drawing::Size(75, 20);
+			this->numeric_iters_from->TabIndex = 10;
+			this->numeric_iters_from->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 100, 0, 0, 0 });
+			// 
+			// numeric_iters_to
+			// 
+			this->numeric_iters_to->Location = System::Drawing::Point(23, 29);
+			this->numeric_iters_to->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000, 0, 0, 0 });
+			this->numeric_iters_to->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10, 0, 0, 0 });
+			this->numeric_iters_to->Name = L"numeric_iters_to";
+			this->numeric_iters_to->Size = System::Drawing::Size(75, 20);
+			this->numeric_iters_to->TabIndex = 9;
+			this->numeric_iters_to->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 200, 0, 0, 0 });
+			// 
+			// label24
+			// 
+			this->label24->AutoSize = true;
+			this->label24->Location = System::Drawing::Point(20, 52);
+			this->label24->Name = L"label24";
+			this->label24->Size = System::Drawing::Size(62, 13);
+			this->label24->TabIndex = 0;
+			this->label24->Text = L"элементов";
+			// 
+			// test_iteration_run
+			// 
+			this->test_iteration_run->Location = System::Drawing::Point(6, 92);
+			this->test_iteration_run->Name = L"test_iteration_run";
+			this->test_iteration_run->Size = System::Drawing::Size(324, 23);
+			this->test_iteration_run->TabIndex = 1;
+			this->test_iteration_run->Text = L"start";
+			this->test_iteration_run->UseVisualStyleBackColor = true;
+			this->test_iteration_run->Click += gcnew System::EventHandler(this, &MyForm::button6_Click);
+			// 
+			// label25
+			// 
+			this->label25->AutoSize = true;
+			this->label25->Location = System::Drawing::Point(139, 0);
+			this->label25->Name = L"label25";
+			this->label25->Size = System::Drawing::Size(54, 13);
+			this->label25->TabIndex = 0;
+			this->label25->Text = L"итерация";
 			// 
 			// MyForm
 			// 
@@ -723,9 +917,9 @@ namespace kursOOP {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::Control;
 			this->ClientSize = System::Drawing::Size(1218, 545);
+			this->Controls->Add(this->panel11);
 			this->Controls->Add(this->panel7);
 			this->Controls->Add(this->panel6);
-			this->Controls->Add(this->sort_reverse_checkbox);
 			this->Controls->Add(this->panel5);
 			this->Controls->Add(this->panel1);
 			this->Name = L"MyForm";
@@ -743,11 +937,11 @@ namespace kursOOP {
 			this->panel2->PerformLayout();
 			this->panel5->ResumeLayout(false);
 			this->panel5->PerformLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->array_size_numeric))->EndInit();
 			this->graph->ResumeLayout(false);
 			this->tabPage1->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picture_box_graph))->EndInit();
 			this->tabPage2->ResumeLayout(false);
+			this->tabPage2->PerformLayout();
 			this->panel6->ResumeLayout(false);
 			this->panel7->ResumeLayout(false);
 			this->panel7->PerformLayout();
@@ -761,51 +955,72 @@ namespace kursOOP {
 			this->panel8->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sort_stop_value))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sort_start_value))->EndInit();
+			this->panel11->ResumeLayout(false);
+			this->panel11->PerformLayout();
+			this->panel12->ResumeLayout(false);
+			this->panel12->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_iter_weight))->EndInit();
+			this->panel13->ResumeLayout(false);
+			this->panel13->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_test_amount))->EndInit();
+			this->panel14->ResumeLayout(false);
+			this->panel14->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_iters_from))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_iters_to))->EndInit();
 			this->ResumeLayout(false);
-			this->PerformLayout();
 
 		}
 #pragma endregion
 
 
-		void dh(std::string message) { listBox1->Items->Insert(listBox1->Items->Count, cs(message)); }
-		void dh(String^ message) { listBox1->Items->Insert(listBox1->Items->Count, message); }
-		void dh_clear() { listBox1->Items->Clear(); }
 
 
 		void update_data() {
 			vector_listbox->Items->Clear(); // clearing the elements
 			list_listbox->Items->Clear();
 
-			if (GL_SHOW_FULL_ARRAYS) // ensure if we want to see full version (takes longer to render)
-			{
-				if (GL_VECTOR.size() == 0) vector_listbox->Items->Insert(vector_listbox->Items->Count, "empty");       // for vector full
-				else for (auto el : GL_VECTOR)  vector_listbox->Items->Insert(vector_listbox->Items->Count, cs(el));
+			if (GL_POINTS_VECTOR.size() == 0) vector_listbox->Items->Insert(vector_listbox->Items->Count, "nothing to show");       // for vector full
+			else for (auto el : GL_POINTS_VECTOR)  vector_listbox->Items->Insert(vector_listbox->Items->Count, cs(el));
 
-				if (GL_LIST.size() == 0) list_listbox->Items->Insert(list_listbox->Items->Count, "empty");             // for list full
-				else for (auto el : GL_LIST)  list_listbox->Items->Insert(list_listbox->Items->Count, cs(el));
-			}
-			else // if we using partial representation of arrays
-			{
-				if (GL_VECTOR.size() == 0) vector_listbox->Items->Insert(vector_listbox->Items->Count, "empty");             // for vector
-				else {
-					for (size_t i = 0; i < GL_SHOWN_LENGTH - 2; i++)
-						vector_listbox->Items->Insert(vector_listbox->Items->Count, cs(s(i) + ": " + s(GL_VECTOR.at(i))));
-					vector_listbox->Items->Insert(vector_listbox->Items->Count, "...");
-					vector_listbox->Items->Insert(vector_listbox->Items->Count, cs(s(GL_VECTOR.size() - 1) + ": " + s(GL_VECTOR.back())));
-				}
+			if (GL_POINTS_LIST.size() == 0) list_listbox->Items->Insert(list_listbox->Items->Count, "nothing to show");             // for list full
+			else for (auto el : GL_POINTS_LIST)  list_listbox->Items->Insert(list_listbox->Items->Count, cs(el));
 
-				if (GL_LIST.size() == 0) list_listbox->Items->Insert(list_listbox->Items->Count, "empty");             // for list
-				else {
-					auto it = GL_LIST.begin();
-					for (size_t i = 0; i < GL_SHOWN_LENGTH - 2; i++)
-						list_listbox->Items->Insert(list_listbox->Items->Count, cs(s(i) + ": " + s(*it++)));
-					list_listbox->Items->Insert(list_listbox->Items->Count, "...");
-					list_listbox->Items->Insert(list_listbox->Items->Count, cs(s(GL_LIST.size() - 1) + ": " + s(GL_LIST.back())));
-				}
-			}
-			dh("data updated");
+			DH.msg("#data updated");
 		}
+
+		//void update_data() {
+		//	vector_listbox->Items->Clear(); // clearing the elements
+		//	list_listbox->Items->Clear();
+
+		//	if (GL_SHOW_FULL_ARRAYS) // ensure if we want to see full version (takes longer to render)
+		//	{
+		//		if (GL_VECTOR.size() == 0) vector_listbox->Items->Insert(vector_listbox->Items->Count, "nothing to show");       // for vector full
+		//		else for (auto el : GL_VECTOR)  vector_listbox->Items->Insert(vector_listbox->Items->Count, cs(el));
+
+		//		if (GL_LIST.size() == 0) list_listbox->Items->Insert(list_listbox->Items->Count, "nothing to show");             // for list full
+		//		else for (auto el : GL_LIST)  list_listbox->Items->Insert(list_listbox->Items->Count, cs(el));
+		//	}
+		//	else // if we using partial representation of arrays
+		//	{
+		//		if (GL_VECTOR.size() == 0) vector_listbox->Items->Insert(vector_listbox->Items->Count, "nothing to show");             // for vector
+		//		else {
+		//			for (size_t i = 0; i < GL_SHOWN_LENGTH - 2; i++)
+		//				vector_listbox->Items->Insert(vector_listbox->Items->Count, cs(s(i) + ": " + s(GL_VECTOR.at(i))));
+		//			vector_listbox->Items->Insert(vector_listbox->Items->Count, "...");
+		//			vector_listbox->Items->Insert(vector_listbox->Items->Count, cs(s(GL_VECTOR.size() - 1) + ": " + s(GL_VECTOR.back())));
+		//		}
+
+		//		if (GL_LIST.size() == 0) list_listbox->Items->Insert(list_listbox->Items->Count, "nothing to show");             // for list
+		//		else {
+		//			auto it = GL_LIST.begin();
+		//			for (size_t i = 0; i < GL_SHOWN_LENGTH - 2; i++)
+		//				list_listbox->Items->Insert(list_listbox->Items->Count, cs(s(i) + ": " + s(*it++)));
+		//			list_listbox->Items->Insert(list_listbox->Items->Count, "...");
+		//			list_listbox->Items->Insert(list_listbox->Items->Count, cs(s(GL_LIST.size() - 1) + ": " + s(GL_LIST.back())));
+		//		}
+		//	}
+		//	DH.msg("#data updated");
+		//}
 
 		// DRAWING THING
 
@@ -822,7 +1037,6 @@ namespace kursOOP {
 			set_max_height();
 			std::vector<int> result_array;
 			size_t pic_height = picture_box_graph->Height;  // test if convertion is neccessary
-			dh(s(pic_height) + " - pic_height");
 			float scale_factor = (float)pic_height / GL_MAX_HEIGHT; // get the maximum value to scale factor
 			/*for (auto& el : result_array) el = el * scale_factor;*/
 			for (size_t i = 0; i < points_array.size(); i++) result_array.push_back(pic_height - (points_array.at(i) * scale_factor));
@@ -854,54 +1068,42 @@ namespace kursOOP {
 		int amount_max = DecToInt(numericUpDown3->Value);
 		int number_of_tests = DecToInt(numericUpDown2->Value);
 		number_of_tests -= 1;
-		// место для проверок
-		GL_POINTS_VECTOR.resize(0);
 
-		for (size_t i = 0; i < number_of_tests + 1; i++)
-		{
-			GL_VECTOR.resize(0);
-			int amount = amount_min + (amount_max - amount_min) / number_of_tests * i;
-			if (vec_reserve_checkbox->Checked) GL_POINTS_VECTOR.reserve(amount);
-			int res = timed_tests::fill(GL_VECTOR, (amount_max - amount_min) / number_of_tests * i);
-			GL_POINTS_VECTOR.push_back(res);
-		}
-		GL_POINTS_LIST.resize(0);
-		for (size_t i = 0; i < number_of_tests + 1; i++)
-		{
-			GL_LIST.resize(0);
-			int amount = amount_min + (amount_max - amount_min) / number_of_tests * i;
-			int res = timed_tests::fill(GL_LIST, (amount_max - amount_min) / number_of_tests * i);
-			GL_POINTS_LIST.push_back(res);
-		}
+		if (amount_max < amount_min) show_messagebox_on_input_error();
+		else {
+			GL_POINTS_VECTOR.resize(0);
+			for (size_t i = 0; i < number_of_tests + 1; i++)
+			{
+				GL_VECTOR.resize(0);
+				int amount = amount_min + (amount_max - amount_min) / number_of_tests * i;
+				if (vec_reserve_checkbox->Checked) GL_VECTOR.reserve(amount);
+				int res = timed_tests::fill(GL_VECTOR, (amount_max - amount_min) / number_of_tests * i);
+				GL_POINTS_VECTOR.push_back(res);
+			}
+			GL_POINTS_LIST.resize(0);
+			for (size_t i = 0; i < number_of_tests + 1; i++)
+			{
+				GL_LIST.resize(0);
+				int amount = amount_min + (amount_max - amount_min) / number_of_tests * i;
+				int res = timed_tests::fill(GL_LIST, (amount_max - amount_min) / number_of_tests * i);
+				GL_POINTS_LIST.push_back(res);
+			}
 
-		graph_refresh();
-		update_data();
+			graph_refresh();
+			update_data();
+		}
 	};
 
 
 	private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-		dh_clear();
+		DH.clear();
 	}
 
-	private: System::Void checkBox1_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-		GL_SHOW_FULL_ARRAYS = checkBox1->Checked;
-		dh("show full arrays = " + s(GL_SHOW_FULL_ARRAYS));
-	}
-
-
-	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {         // FILLING THE ARRAY
-		GL_VECTOR.resize(DecToInt(array_size_numeric->Value));
-		rnd::fill_random_integers(GL_VECTOR.begin(), GL_VECTOR.end(), GL_RAND_MIN, GL_RAND_MAX);
-		update_data();
-	}
-	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
-		GL_LIST.resize(DecToInt(array_size_numeric->Value));
-		rnd::fill_random_integers(GL_LIST.begin(), GL_LIST.end(), GL_RAND_MIN, GL_RAND_MAX);
-		update_data();
-	}
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {               // ONLOAD
+		DH.set_new_target_listbox(listBox1);
+		upd_console();
 	}
 
 
@@ -947,6 +1149,7 @@ namespace kursOOP {
 
 			e->Graphics->DrawString(cs(s("LIST")), Font, brush, 0, 0);
 		}
+		DH.msg("#graphs updated");
 	}
 	void graph_refresh()     // make live easier
 	{
@@ -959,41 +1162,106 @@ private: System::Void numericUpDown5_ValueChanged(System::Object^ sender, System
 }
 
 
-	private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e)            // СОРТИРОВКА 
+	private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e)            // БОЛЬШИЕ СТРУКТУРЫ
 	{       
 		int amount_min = DecToInt(sort_start_value->Value);
 		int amount_max = DecToInt(sort_stop_value->Value);
 		int number_of_tests = DecToInt(sort_test_amount->Value);
+
+		DH.msg("");
+		DH.msg("big structs fill test initialized");
+		DH.msg("$amount_min = "+s(amount_min));
+		DH.msg("$amount_max = " + s(amount_max));
+		DH.msg("$number_of_tests = " + s(number_of_tests));
+
+		// rewrite the amount code
+		size_t range = amount_max - amount_min;
+		size_t step = range / (number_of_tests - 1);
+		size_t amount;
+
+		if (amount_max < amount_min) show_messagebox_on_input_error();
+		else {
+			GL_POINTS_VECTOR.resize(0);
+			DH.msg("vector: ");
+			for (size_t i = 0; i < number_of_tests; i++)
+			{
+
+				amount = amount_min + step * i;
+				DH.msg("$test running with params: " + s(true) + ", " + s(amount) + ", " + s((size_t)amount / 2) + ", " + s(DecToInt(numericUpDown_load->Value)) + ", " + s(!checkbox_vector2_reserve->Checked));
+				int res = timed_tests::fill_big_struct(true, amount, (size_t)amount / 2, DecToInt(numericUpDown_load->Value), !checkbox_vector2_reserve->Checked);
+				DH.msg("iteration " + s(i) + " done", true);
+				GL_POINTS_VECTOR.push_back(res);
+			}
+			GL_POINTS_LIST.resize(0);
+			DH.msg("list: ");
+			for (size_t i = 0; i < number_of_tests; i++)
+			{
+				amount = amount_min + step * i;
+				DH.msg("$test running with params: " + s(true) + ", " + s(amount) +", "+ s((size_t)amount / 2) + ", " + s(DecToInt(numericUpDown_load->Value)) + ", " + s(!checkbox_vector2_reserve->Checked));
+				int res = timed_tests::fill_big_struct(false, amount, (size_t)amount / 2, DecToInt(numericUpDown_load->Value));
+				DH.msg("iteration "+s(i)+" done", true);
+				GL_POINTS_LIST.push_back(res);
+			}
+			graph_refresh();
+			update_data();
+		}
+	}
+
+	private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) 
+	{
+		int amount_min = DecToInt(numeric_iters_from->Value);
+		int amount_max = DecToInt(numeric_iters_to->Value);
+		int element_weight = DecToInt(numeric_iter_weight->Value);
+		int number_of_tests = DecToInt(numeric_test_amount->Value);
 		number_of_tests -= 1;
-		bool reverse = false;
-		// место для проверок
 
+		DH.msg("#big structs iteration test initialized");
+		DH.msg("$amount_min = " + s(amount_min));
+		DH.msg("$amount_max = " + s(amount_max));
+		DH.msg("$number_of_tests = " + s(number_of_tests));
 
-		GL_POINTS_VECTOR.resize(0);
+		// rewrite the amount code
+		size_t range = amount_max - amount_min;
+		size_t step = range / (number_of_tests - 1);
+		size_t amount;
 
-		if (vec_reserve_checkbox->Checked) reverse = true;
+		if (amount_max < amount_min) show_messagebox_on_input_error();
+		else{
+			GL_POINTS_VECTOR.resize(0);
+			for (size_t i = 0; i < number_of_tests + 1; i++)
+			{
+				amount = amount_min + step * i;
+				int res = timed_tests::iteration_test_big_struct(true, (amount_max - amount_min) / number_of_tests * i, (size_t)amount / 2, element_weight);
+				GL_POINTS_VECTOR.push_back(res);
+			}
+			GL_POINTS_LIST.resize(0);
 
-		for (size_t i = 0; i < number_of_tests + 1; i++)
-		{
-			GL_VECTOR.resize(0);
-			int amount = amount_min + (amount_max - amount_min) / number_of_tests * i;
-			rnd::fill_random_integers(GL_VECTOR, amount);
-			int res = timed_tests::fill_big_struct(true, (amount_max - amount_min) / number_of_tests * i, (size_t)amount / 2, DecToInt(numericUpDown_load->Value));
-			GL_POINTS_VECTOR.push_back(res);
+			for (size_t i = 0; i < number_of_tests + 1; i++)
+			{
+				amount = amount_min + step * i;
+				int res = timed_tests::iteration_test_big_struct(false, (amount_max - amount_min) / number_of_tests * i, (size_t)amount / 2, element_weight);
+				GL_POINTS_LIST.push_back(res);
+			}
+			graph_refresh();
+			update_data();
 		}
-		GL_POINTS_LIST.resize(0);
+	}
 
-		for (size_t i = 0; i < number_of_tests + 1; i++)
-		{
-			GL_LIST.resize(0);
-			int amount = amount_min + (amount_max - amount_min) / number_of_tests * i;
-			rnd::fill_random_integers(GL_VECTOR, amount);
-			int res = timed_tests::fill_big_struct(false, (amount_max - amount_min) / number_of_tests * i, (size_t)amount / 2, DecToInt(numericUpDown_load->Value));
-			GL_POINTS_LIST.push_back(res);
-		}
-		graph_refresh();
-		update_data();
-		}
+
+		   void show_messagebox_on_input_error() 
+		   {
+			   MessageBox::Show("ошибка ввода", "некоторые данные введены некорректно", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+		   }
+			private: System::Void checkBox2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+				upd_console();
+			}
+			private: System::Void checkBox3_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+				upd_console();
+			}
+			void upd_console() {
+				DH.debug(checkBox2->Checked);
+				DH.prefixes(checkBox3->Checked);
+			}
 };
 };
 

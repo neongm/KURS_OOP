@@ -7,6 +7,11 @@
 #include <algorithm>
 #include "rand_gen.h"
 
+
+// newer tests:
+#include "vector_iteration_test.h"
+#include "list_iteration_test.h"
+
 namespace timed_tests {
 
 	template<typename T>
@@ -120,15 +125,19 @@ namespace timed_tests {
 
 
 
-	size_t fill_big_struct(bool cont_type, size_t amount, size_t pos, size_t load = 1)
+	size_t fill_big_struct(bool cont_type, size_t amount, size_t pos, size_t load = 1, bool _reserve = false)
 	{
+		// cont_type = 1: vector
+		// cont_type = 0: list
 		size_t time;
 		size_t aa = 2;
 
 
-		if (cont_type) 
+		if (cont_type && _reserve) 
 		{
+			//std::vector<book> cont(amount);
 			std::vector<book> cont(amount);
+			if (_reserve) cont.reserve(amount);
 
 			auto begin = std::chrono::steady_clock::now();
 			for (size_t i = 0; i < amount; i++)
@@ -138,6 +147,20 @@ namespace timed_tests {
 			}
 			auto end = std::chrono::steady_clock::now();
 			time = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count();
+		}
+		else if (cont_type && !_reserve)
+		{
+			std::vector<book> cont;
+
+			auto begin = std::chrono::steady_clock::now();
+			for (size_t i = 0; i < amount; i++)
+			{
+				book buk = book(i, load);
+				cont.push_back(buk);
+			}
+			auto end = std::chrono::steady_clock::now();
+			time = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count();
+
 		}
 		else
 		{
@@ -156,5 +179,22 @@ namespace timed_tests {
 		}
 
 		return time;
+	}
+	
+	size_t iteration_test_big_struct(bool cont_type, size_t _amount, size_t _load, size_t _iterations_amount) 
+	{
+		// cont_type = 1: vector
+		// cont_type = 0: list
+
+		if (cont_type == 1) {
+			vector_iteration_test object = vector_iteration_test(_amount, _load, _iterations_amount);
+			object.run();
+			return object.get_last_result();
+		}
+		else {
+			list_iteration_test object = list_iteration_test(_amount, _load, _iterations_amount);
+			object.run();
+			return object.get_last_result();
+		}
 	}
 }

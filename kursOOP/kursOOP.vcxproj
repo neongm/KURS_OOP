@@ -119,12 +119,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="debug_handler.cpp" />
+    <ClCompile Include="list_iteration_test.cpp" />
     <ClCompile Include="MyForm.cpp" />
+    <ClCompile Include="Test.cpp" />
+    <ClCompile Include="variable_size_struct.cpp" />
+    <ClCompile Include="vector_iteration_test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="converters.h" />
+    <ClInclude Include="debug_handler.h" />
+    <ClInclude Include="list_iteration_test.h" />
     <ClInclude Include="rand_gen.h" />
+    <ClInclude Include="Test.h" />
     <ClInclude Include="tests.h" />
+    <ClInclude Include="variable_size_struct.h" />
+    <ClInclude Include="vector_iteration_test.h" />
     <ClInclude Include="vector_tests.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="MyForm.h">

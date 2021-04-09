@@ -3,7 +3,6 @@
 
 namespace rnd
 {
-
 	// iterators based implementation
 	template<typename It>
 	void fill_random_integers(It beg, It end, int min, int max)
