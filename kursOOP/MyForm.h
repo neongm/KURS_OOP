@@ -1,14 +1,17 @@
 #pragma once
-#include "time.h"
+//#include "time.h"
 #include <chrono>
 #include <list>
-#include "tests.h"
-#include "converters.h"
-#include "rand_gen.h"
 #include <algorithm>
 
 
-#include "debug_handler.h"
+// mu stuff
+#include "src/converters.h"
+#include "src/rand_gen.h"
+#include "src/debug_handler.h"
+
+
+
 debug_handler DH = debug_handler();
 
 std::vector<int> GL_VECTOR;
@@ -23,6 +26,7 @@ size_t GL_RAND_MIN = 0;
 std::vector<size_t> GL_POINTS_LIST;
 std::vector<size_t> GL_POINTS_VECTOR;
 size_t GL_MAX_HEIGHT;
+
 
 namespace kursOOP {
 
@@ -92,7 +96,7 @@ namespace kursOOP {
 	private: System::Windows::Forms::TabPage^ tabPage2;
 	private: System::Windows::Forms::Panel^ panel6;
 
-	private: System::Windows::Forms::PictureBox^ picture_box_graph;
+
 	private: System::Windows::Forms::Label^ label8;
 	private: System::Windows::Forms::NumericUpDown^ numericUpDown3;
 	private: System::Windows::Forms::Label^ label2;
@@ -146,6 +150,7 @@ namespace kursOOP {
 	private: System::Windows::Forms::NumericUpDown^ numeric_iters_from;
 private: System::Windows::Forms::CheckBox^ checkBox3;
 private: System::Windows::Forms::CheckBox^ checkBox2;
+private: System::Windows::Forms::DataVisualization::Charting::Chart^ chart1;
 
 
 
@@ -169,6 +174,10 @@ private: System::Windows::Forms::CheckBox^ checkBox2;
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->listBox1 = (gcnew System::Windows::Forms::ListBox());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
@@ -193,7 +202,7 @@ private: System::Windows::Forms::CheckBox^ checkBox2;
 			this->panel5 = (gcnew System::Windows::Forms::Panel());
 			this->graph = (gcnew System::Windows::Forms::TabControl());
 			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
-			this->picture_box_graph = (gcnew System::Windows::Forms::PictureBox());
+			this->chart1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->tabPage2 = (gcnew System::Windows::Forms::TabPage());
 			this->checkBox3 = (gcnew System::Windows::Forms::CheckBox());
 			this->checkBox2 = (gcnew System::Windows::Forms::CheckBox());
@@ -243,7 +252,7 @@ private: System::Windows::Forms::CheckBox^ checkBox2;
 			this->panel5->SuspendLayout();
 			this->graph->SuspendLayout();
 			this->tabPage1->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picture_box_graph))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->BeginInit();
 			this->tabPage2->SuspendLayout();
 			this->panel6->SuspendLayout();
 			this->panel7->SuspendLayout();
@@ -272,7 +281,7 @@ private: System::Windows::Forms::CheckBox^ checkBox2;
 			this->button1->TabIndex = 0;
 			this->button1->Text = L"start";
 			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
+			this->button1->Click += gcnew System::EventHandler(this, &MyForm::btn_test_pushback);
 			// 
 			// listBox1
 			// 
@@ -335,7 +344,6 @@ private: System::Windows::Forms::CheckBox^ checkBox2;
 			this->label3->Size = System::Drawing::Size(41, 13);
 			this->label3->TabIndex = 8;
 			this->label3->Text = L"òåñòîâ";
-			this->label3->Click += gcnew System::EventHandler(this, &MyForm::label3_Click);
 			// 
 			// panel3
 			// 
@@ -494,7 +502,7 @@ private: System::Windows::Forms::CheckBox^ checkBox2;
 			// 
 			// tabPage1
 			// 
-			this->tabPage1->Controls->Add(this->picture_box_graph);
+			this->tabPage1->Controls->Add(this->chart1);
 			this->tabPage1->Location = System::Drawing::Point(4, 22);
 			this->tabPage1->Name = L"tabPage1";
 			this->tabPage1->Padding = System::Windows::Forms::Padding(3);
@@ -503,14 +511,30 @@ private: System::Windows::Forms::CheckBox^ checkBox2;
 			this->tabPage1->Text = L"ãðàôèê";
 			this->tabPage1->UseVisualStyleBackColor = true;
 			// 
-			// picture_box_graph
+			// chart1
 			// 
-			this->picture_box_graph->Location = System::Drawing::Point(3, 3);
-			this->picture_box_graph->Name = L"picture_box_graph";
-			this->picture_box_graph->Size = System::Drawing::Size(581, 466);
-			this->picture_box_graph->TabIndex = 0;
-			this->picture_box_graph->TabStop = false;
-			this->picture_box_graph->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::picture_box_graph_Paint);
+			chartArea1->Name = L"ChartArea1";
+			this->chart1->ChartAreas->Add(chartArea1);
+			legend1->Name = L"Legend1";
+			this->chart1->Legends->Add(legend1);
+			this->chart1->Location = System::Drawing::Point(3, 6);
+			this->chart1->Name = L"chart1";
+			series1->BorderWidth = 4;
+			series1->ChartArea = L"ChartArea1";
+			series1->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Spline;
+			series1->Legend = L"Legend1";
+			series1->MarkerColor = System::Drawing::Color::Transparent;
+			series1->Name = L"vector time";
+			series2->BorderWidth = 4;
+			series2->ChartArea = L"ChartArea1";
+			series2->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Spline;
+			series2->Legend = L"Legend1";
+			series2->Name = L"list time";
+			this->chart1->Series->Add(series1);
+			this->chart1->Series->Add(series2);
+			this->chart1->Size = System::Drawing::Size(578, 463);
+			this->chart1->TabIndex = 1;
+			this->chart1->Text = L"chart1";
 			// 
 			// tabPage2
 			// 
@@ -684,7 +708,6 @@ private: System::Windows::Forms::CheckBox^ checkBox2;
 			this->sort_stop_value->Size = System::Drawing::Size(75, 20);
 			this->sort_stop_value->TabIndex = 10;
 			this->sort_stop_value->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000, 0, 0, 0 });
-			this->sort_stop_value->ValueChanged += gcnew System::EventHandler(this, &MyForm::numericUpDown5_ValueChanged);
 			// 
 			// sort_start_value
 			// 
@@ -939,7 +962,7 @@ private: System::Windows::Forms::CheckBox^ checkBox2;
 			this->panel5->PerformLayout();
 			this->graph->ResumeLayout(false);
 			this->tabPage1->ResumeLayout(false);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picture_box_graph))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->EndInit();
 			this->tabPage2->ResumeLayout(false);
 			this->tabPage2->PerformLayout();
 			this->panel6->ResumeLayout(false);
@@ -972,297 +995,31 @@ private: System::Windows::Forms::CheckBox^ checkBox2;
 		}
 #pragma endregion
 
+	void update_data() {
+		vector_listbox->Items->Clear(); // clearing the elements
+		list_listbox->Items->Clear();
 
+		if (GL_POINTS_VECTOR.size() == 0) vector_listbox->Items->Insert(vector_listbox->Items->Count, "nothing to show"); 
+		else for (auto el : GL_POINTS_VECTOR)  vector_listbox->Items->Insert(vector_listbox->Items->Count, cs(el));
 
+		if (GL_POINTS_LIST.size() == 0) list_listbox->Items->Insert(list_listbox->Items->Count, "nothing to show");         
+		else for (auto el : GL_POINTS_LIST)  list_listbox->Items->Insert(list_listbox->Items->Count, cs(el));
 
-		void update_data() {
-			vector_listbox->Items->Clear(); // clearing the elements
-			list_listbox->Items->Clear();
-
-			if (GL_POINTS_VECTOR.size() == 0) vector_listbox->Items->Insert(vector_listbox->Items->Count, "nothing to show");       // for vector full
-			else for (auto el : GL_POINTS_VECTOR)  vector_listbox->Items->Insert(vector_listbox->Items->Count, cs(el));
-
-			if (GL_POINTS_LIST.size() == 0) list_listbox->Items->Insert(list_listbox->Items->Count, "nothing to show");             // for list full
-			else for (auto el : GL_POINTS_LIST)  list_listbox->Items->Insert(list_listbox->Items->Count, cs(el));
-
-			DH.msg("#data updated");
-		}
-
-		//void update_data() {
-		//	vector_listbox->Items->Clear(); // clearing the elements
-		//	list_listbox->Items->Clear();
-
-		//	if (GL_SHOW_FULL_ARRAYS) // ensure if we want to see full version (takes longer to render)
-		//	{
-		//		if (GL_VECTOR.size() == 0) vector_listbox->Items->Insert(vector_listbox->Items->Count, "nothing to show");       // for vector full
-		//		else for (auto el : GL_VECTOR)  vector_listbox->Items->Insert(vector_listbox->Items->Count, cs(el));
-
-		//		if (GL_LIST.size() == 0) list_listbox->Items->Insert(list_listbox->Items->Count, "nothing to show");             // for list full
-		//		else for (auto el : GL_LIST)  list_listbox->Items->Insert(list_listbox->Items->Count, cs(el));
-		//	}
-		//	else // if we using partial representation of arrays
-		//	{
-		//		if (GL_VECTOR.size() == 0) vector_listbox->Items->Insert(vector_listbox->Items->Count, "nothing to show");             // for vector
-		//		else {
-		//			for (size_t i = 0; i < GL_SHOWN_LENGTH - 2; i++)
-		//				vector_listbox->Items->Insert(vector_listbox->Items->Count, cs(s(i) + ": " + s(GL_VECTOR.at(i))));
-		//			vector_listbox->Items->Insert(vector_listbox->Items->Count, "...");
-		//			vector_listbox->Items->Insert(vector_listbox->Items->Count, cs(s(GL_VECTOR.size() - 1) + ": " + s(GL_VECTOR.back())));
-		//		}
-
-		//		if (GL_LIST.size() == 0) list_listbox->Items->Insert(list_listbox->Items->Count, "nothing to show");             // for list
-		//		else {
-		//			auto it = GL_LIST.begin();
-		//			for (size_t i = 0; i < GL_SHOWN_LENGTH - 2; i++)
-		//				list_listbox->Items->Insert(list_listbox->Items->Count, cs(s(i) + ": " + s(*it++)));
-		//			list_listbox->Items->Insert(list_listbox->Items->Count, "...");
-		//			list_listbox->Items->Insert(list_listbox->Items->Count, cs(s(GL_LIST.size() - 1) + ": " + s(GL_LIST.back())));
-		//		}
-		//	}
-		//	DH.msg("#data updated");
-		//}
-
-		// DRAWING THING
-
-		void set_max_height()
-		{
-			int option_1 = *std::max_element(GL_POINTS_VECTOR.begin(), GL_POINTS_VECTOR.end());
-			int option_2 = *std::max_element(GL_POINTS_LIST.begin(), GL_POINTS_LIST.end());
-			if (option_1 >= option_2) GL_MAX_HEIGHT = option_1;
-			else GL_MAX_HEIGHT = option_2;
-		}
-
-		std::vector<int> get_vertical_coordinates(const std::vector<size_t>& points_array)  // vertical coordinates
-		{
-			set_max_height();
-			std::vector<int> result_array;
-			size_t pic_height = picture_box_graph->Height;  // test if convertion is neccessary
-			float scale_factor = (float)pic_height / GL_MAX_HEIGHT; // get the maximum value to scale factor
-			/*for (auto& el : result_array) el = el * scale_factor;*/
-			for (size_t i = 0; i < points_array.size(); i++) result_array.push_back(pic_height - (points_array.at(i) * scale_factor));
-			return result_array;
-		}
-		std::vector<int> get_horizontal_coordinates(const std::vector<size_t>& points_array)  // horizontal coordinates
-		{
-			std::vector<int> result_array;
-			/*size_t pic_width = picture_box_graph->Width;*/
-			for (size_t i = 0; i < points_array.size(); i++) result_array.push_back(picture_box_graph->Width / points_array.size() * i + 1);
-			return result_array;
-		}
-
-		size_t adjust_coords(int coord, int max, int correction)
-		{
-			if (coord + correction >= max) return coord - correction;
-			if (coord - correction <= 0) return coord + correction;
-			return coord;
-		}
-
-
-
-
-
-		
-		// FILL TEST
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		int amount_min = DecToInt(numericUpDown1->Value);
-		int amount_max = DecToInt(numericUpDown3->Value);
-		int number_of_tests = DecToInt(numericUpDown2->Value);
-		number_of_tests -= 1;
-
-		DH.msg("");
-		DH.msg("fill test initialized ( push_back() )");
-		DH.msg("$amount_min = " + s(amount_min));
-		DH.msg("$amount_max = " + s(amount_max));
-		DH.msg("$number_of_tests = " + s(number_of_tests));
-
-		if (amount_max < amount_min) show_messagebox_on_input_error();
-		else {
-			DH.msg("vector ");
-			GL_POINTS_VECTOR.resize(0);
-			for (size_t i = 0; i < number_of_tests + 1; i++)
-			{
-				
-				GL_VECTOR.resize(0);
-				int amount = amount_min + (amount_max - amount_min) / number_of_tests * i;
-				if (vec_reserve_checkbox->Checked) GL_VECTOR.reserve(amount);
-				int res = timed_tests::fill(GL_VECTOR, (amount_max - amount_min) / number_of_tests * i);
-				GL_POINTS_VECTOR.push_back(res);
-				DH.msg("iteration " + s(i) + " done", true);
-			}
-			GL_POINTS_LIST.resize(0);
-			DH.msg("list ");
-			for (size_t i = 0; i < number_of_tests + 1; i++)
-			{
-				GL_LIST.resize(0);
-				int amount = amount_min + (amount_max - amount_min) / number_of_tests * i;
-				int res = timed_tests::fill(GL_LIST, (amount_max - amount_min) / number_of_tests * i);
-				GL_POINTS_LIST.push_back(res);
-				DH.msg("iteration " + s(i) + " done", true);
-			}
-
-			graph_refresh();
-			update_data();
-		}
-	};
-
-
-	private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
+		DH.msg("#data updated");
 	}
+
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 		DH.clear();
 	}
 
-	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {               // ONLOAD
-		DH.set_new_target_listbox(listBox1);
-		upd_console();
-	}
+	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e); // ONLOAD
 
+	private: System::Void btn_test_pushback(System::Object^ sender, System::EventArgs^ e); // back small structs
 
-	private: System::Void picture_box_graph_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e)
-	{
-		size_t pic_height = picture_box_graph->Height;
-		size_t pic_width = picture_box_graph->Width;
+	private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e); // front big structs
 
-		Font = gcnew System::Drawing::Font("Microsoft Sans Serif", 8.25, FontStyle::Regular);
-		if (GL_POINTS_VECTOR.size() != 0)
-		{
-			std::vector<int> vertical = get_vertical_coordinates(GL_POINTS_VECTOR);
-			std::vector<int> horizontal = get_horizontal_coordinates(GL_POINTS_VECTOR);
-			e->Graphics->TextRenderingHint = System::Drawing::Text::TextRenderingHint::AntiAlias;
-			Brush^ brush = gcnew SolidBrush(Color::Black); // text
-			Pen^ pen = gcnew Pen(Color::Black);
-			pen->Width = 2;
+	private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e); // iteration test
 
-			e->Graphics->DrawString(cs(s(GL_POINTS_VECTOR.at(0)) + "ms"), Font, brush, adjust_coords(horizontal.at(0) - 10, pic_width, 10), adjust_coords(vertical.at(0) + 10, pic_height, 30));
-			for (size_t i = 0; i < GL_POINTS_VECTOR.size() - 1; i++)
-			{
-				e->Graphics->DrawLine(pen, horizontal.at(i), vertical.at(i), horizontal.at(i + 1), vertical.at(i + 1));
-				e->Graphics->DrawString(cs(s(GL_POINTS_VECTOR.at(i + 1)) + "ms"), Font, brush, adjust_coords(horizontal.at(i + 1) - 10, pic_width, 10), adjust_coords(vertical.at(i + 1) + 10, pic_height, 10));
-			}
-			e->Graphics->DrawString(cs(s("VECTOR")), Font, brush, 0, 20);
-		}
-
-		if (GL_POINTS_LIST.size() != 0)
-		{
-			std::vector<int> vertical = get_vertical_coordinates(GL_POINTS_LIST);
-			std::vector<int> horizontal = get_horizontal_coordinates(GL_POINTS_LIST);
-			e->Graphics->TextRenderingHint = System::Drawing::Text::TextRenderingHint::AntiAlias;
-			Brush^ brush = gcnew SolidBrush(Color::Red); // text
-			Pen^ pen = gcnew Pen(Color::Red);
-			pen->Width = 2;
-
-			e->Graphics->DrawString(cs(s(GL_POINTS_LIST.at(0)) + "ms"), Font, brush, adjust_coords(horizontal.at(0) + 10, pic_width, 10), adjust_coords(vertical.at(0), pic_height, 20));
-			for (size_t i = 0; i < GL_POINTS_LIST.size() - 1; i++)
-			{
-				e->Graphics->DrawLine(pen, horizontal.at(i), vertical.at(i), horizontal.at(i + 1), vertical.at(i + 1));
-				e->Graphics->DrawString(cs(s(GL_POINTS_LIST.at(i + 1)) + "ms"), Font, brush, adjust_coords(horizontal.at(i + 1), pic_width, 10), adjust_coords(vertical.at(i + 1) + 10, pic_height, 5));
-			}
-
-			e->Graphics->DrawString(cs(s("LIST")), Font, brush, 0, 0);
-		}
-		DH.msg("#graphs updated");
-	}
-	void graph_refresh()     // make live easier
-	{
-		picture_box_graph->Refresh();
-	}
-
-private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e) {  // hz zachem
-}
-private: System::Void numericUpDown5_ValueChanged(System::Object^ sender, System::EventArgs^ e) { // hz zachem
-}
-
-
-	private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e)            // ÁÎËÜØÈÅ ÑÒÐÓÊÒÓÐÛ
-	{       
-		int amount_min = DecToInt(sort_start_value->Value);
-		int amount_max = DecToInt(sort_stop_value->Value);
-		int number_of_tests = DecToInt(sort_test_amount->Value);
-
-		DH.msg("");
-		DH.msg("big structs fill test initialized");
-		DH.msg("$amount_min = "+s(amount_min));
-		DH.msg("$amount_max = " + s(amount_max));
-		DH.msg("$number_of_tests = " + s(number_of_tests));
-
-		// rewrite the amount code
-		size_t range = amount_max - amount_min;
-		size_t step = range / (number_of_tests - 1);
-		size_t amount;
-
-		if (amount_max < amount_min) show_messagebox_on_input_error();
-		else {
-			GL_POINTS_VECTOR.resize(0);
-			DH.msg("vector: ");
-			for (size_t i = 0; i < number_of_tests; i++)
-			{
-
-				amount = amount_min + step * i;
-				DH.msg("$test running with params: " + s(true) + ", " + s(amount) + ", " + s((size_t)amount / 2) + ", " + s(DecToInt(numericUpDown_load->Value)) + ", " + s(!checkbox_vector2_reserve->Checked));
-				int res = timed_tests::fill_big_struct(true, amount, (size_t)amount / 2, DecToInt(numericUpDown_load->Value), !checkbox_vector2_reserve->Checked);
-				DH.msg("iteration " + s(i) + " done", true);
-				GL_POINTS_VECTOR.push_back(res);
-			}
-			GL_POINTS_LIST.resize(0);
-			DH.msg("list: ");
-			for (size_t i = 0; i < number_of_tests; i++)
-			{
-				amount = amount_min + step * i;
-				DH.msg("$test running with params: " + s(true) + ", " + s(amount) +", "+ s((size_t)amount / 2) + ", " + s(DecToInt(numericUpDown_load->Value)) + ", " + s(!checkbox_vector2_reserve->Checked));
-				int res = timed_tests::fill_big_struct(false, amount, (size_t)amount / 2, DecToInt(numericUpDown_load->Value));
-				DH.msg("iteration "+s(i)+" done", true);
-				GL_POINTS_LIST.push_back(res);
-			}
-			graph_refresh();
-			update_data();
-		}
-	}
-
-	private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) 
-	{
-		int amount_min = DecToInt(numeric_iters_from->Value);
-		int amount_max = DecToInt(numeric_iters_to->Value);
-		int element_weight = DecToInt(numeric_iter_weight->Value);
-		int number_of_tests = DecToInt(numeric_test_amount->Value);
-		number_of_tests -= 1;
-
-		DH.msg("#big structs iteration test initialized");
-		DH.msg("$amount_min = " + s(amount_min));
-		DH.msg("$amount_max = " + s(amount_max));
-		DH.msg("$number_of_tests = " + s(number_of_tests));
-
-		// rewrite the amount code
-		size_t range = amount_max - amount_min;
-		size_t step = range / (number_of_tests - 1);
-		size_t amount;
-
-		if (amount_max < amount_min) show_messagebox_on_input_error();
-		else{
-			DH.msg("vector: ");
-			GL_POINTS_VECTOR.resize(0);
-			for (size_t i = 0; i < number_of_tests + 1; i++)
-			{
-				amount = amount_min + step * i;
-				DH.msg("$test running with params: " + s(true) + ", " + s(amount) + ", " + s((size_t)amount / 2) + ", " + s((size_t)amount / 2) + ", " + s(element_weight));
-				int res = timed_tests::iteration_test_big_struct(true, amount, (size_t)amount / 2, element_weight);
-				GL_POINTS_VECTOR.push_back(res);
-				DH.msg("iteration " + s(i) + " done", true);
-
-			}
-			GL_POINTS_LIST.resize(0);
-			DH.msg("list: ");
-			for (size_t i = 0; i < number_of_tests + 1; i++)
-			{
-				amount = amount_min + step * i;
-				DH.msg("$test running with params: " + s(false) + ", " + s(amount) + ", " + s((size_t)amount / 2) + ", " + s((size_t)amount / 2) + ", " + s(element_weight));
-				int res = timed_tests::iteration_test_big_struct(false, amount, (size_t)amount / 2, element_weight);
-				GL_POINTS_LIST.push_back(res);
-				DH.msg("iteration " + s(i) + " done", true);
-			}
-			graph_refresh();
-			update_data();
-		}
-	}
 
 
 	void show_messagebox_on_input_error() 
@@ -1275,19 +1032,10 @@ private: System::Void numericUpDown5_ValueChanged(System::Object^ sender, System
 	private: System::Void checkBox3_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 		upd_console();
 	}
+
 	void upd_console() {
 		DH.debug(checkBox2->Checked);
 		DH.prefixes(checkBox3->Checked);
 	}
 };
 };
-
-template<typename T>
-int TimeFunction(T f(int), int iters)
-{
-	auto begin = std::chrono::steady_clock::now();
-	f(iters);
-	auto end = std::chrono::steady_clock::now();
-	auto elapsed_ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin);
-	return elapsed_ms.count();
-}

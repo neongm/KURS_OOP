@@ -9,5 +9,6 @@ class list_iteration_test : public Test
 public:
 	void run();
 	list_iteration_test(size_t _amount, size_t _additional_load, size_t _iterations_amount);
+	void set_rangable(size_t _rangable);
 };
 

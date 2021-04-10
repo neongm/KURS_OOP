@@ -116,30 +116,36 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="debug_handler.cpp" />
-    <ClCompile Include="list_iteration_test.cpp" />
+    <ClCompile Include="src\chart_manager.cpp" />
+    <ClCompile Include="src\tests\list_big_structs_test.cpp" />
+    <ClCompile Include="src\debug_handler.cpp" />
+    <ClCompile Include="src\tests\list_iteration_test.cpp" />
     <ClCompile Include="MyForm.cpp" />
-    <ClCompile Include="Test.cpp" />
-    <ClCompile Include="variable_size_struct.cpp" />
-    <ClCompile Include="vector_iteration_test.cpp" />
+    <ClCompile Include="src\tests\Test.cpp" />
+    <ClCompile Include="src\tests\variable_size_struct.cpp" />
+    <ClCompile Include="src\tests\vector_iteration_test.cpp" />
+    <ClCompile Include="src\tests\vector_big_structs_test.cpp" />
+    <ClCompile Include="src\tests_ranger.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="converters.h" />
-    <ClInclude Include="debug_handler.h" />
-    <ClInclude Include="list_iteration_test.h" />
-    <ClInclude Include="rand_gen.h" />
-    <ClInclude Include="Test.h" />
-    <ClInclude Include="tests.h" />
-    <ClInclude Include="variable_size_struct.h" />
-    <ClInclude Include="vector_iteration_test.h" />
-    <ClInclude Include="vector_tests.h" />
-    <ClInclude Include="timer.h" />
+    <ClInclude Include="src\chart_manager.h" />
+    <ClInclude Include="src\tests\list_big_structs_test.h" />
+    <ClInclude Include="src\converters.h" />
+    <ClInclude Include="src\debug_handler.h" />
+    <ClInclude Include="src\tests\list_iteration_test.h" />
+    <ClInclude Include="src\rand_gen.h" />
+    <ClInclude Include="src\tests\Test.h" />
+    <ClInclude Include="src\tests\variable_size_struct.h" />
+    <ClInclude Include="src\tests\vector_iteration_test.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="src\tests\vector_big_structs_test.h" />
+    <ClInclude Include="src\tests_ranger.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyForm.resx">

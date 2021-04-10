@@ -13,6 +13,7 @@ public:
 
 	virtual void run() {};
 	void set_amount(uint32_t _amount);
+	void set_rangable(size_t _rangable);
 	uint32_t get_last_result();
 	void timer_begin();
 	void timer_end();
