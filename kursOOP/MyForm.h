@@ -301,11 +301,11 @@ private: System::Windows::Forms::CheckBox^ checkBox2;
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(130, 1);
+			this->label4->Location = System::Drawing::Point(115, 0);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(67, 13);
+			this->label4->Size = System::Drawing::Size(100, 13);
 			this->label4->TabIndex = 4;
-			this->label4->Text = L"заполнение";
+			this->label4->Text = L"заполнение (back)";
 			// 
 			// panel4
 			// 
@@ -367,7 +367,7 @@ private: System::Windows::Forms::CheckBox^ checkBox2;
 			this->numericUpDown3->Name = L"numericUpDown3";
 			this->numericUpDown3->Size = System::Drawing::Size(75, 20);
 			this->numericUpDown3->TabIndex = 6;
-			this->numericUpDown3->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 100000, 0, 0, 0 });
+			this->numericUpDown3->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000000, 0, 0, 0 });
 			// 
 			// label2
 			// 
@@ -736,11 +736,11 @@ private: System::Windows::Forms::CheckBox^ checkBox2;
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(80, 0);
+			this->label9->Location = System::Drawing::Point(48, 0);
 			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(190, 13);
+			this->label9->Size = System::Drawing::Size(220, 13);
 			this->label9->TabIndex = 0;
-			this->label9->Text = L"заполнение объёмными объектами";
+			this->label9->Text = L"заполнение объёмными объектами (front)";
 			// 
 			// panel11
 			// 
@@ -866,12 +866,12 @@ private: System::Windows::Forms::CheckBox^ checkBox2;
 			// numeric_iters_from
 			// 
 			this->numeric_iters_from->Location = System::Drawing::Point(23, 7);
-			this->numeric_iters_from->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 900, 0, 0, 0 });
+			this->numeric_iters_from->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 200, 0, 0, 0 });
 			this->numeric_iters_from->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
 			this->numeric_iters_from->Name = L"numeric_iters_from";
 			this->numeric_iters_from->Size = System::Drawing::Size(75, 20);
 			this->numeric_iters_from->TabIndex = 10;
-			this->numeric_iters_from->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 100, 0, 0, 0 });
+			this->numeric_iters_from->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10, 0, 0, 0 });
 			// 
 			// numeric_iters_to
 			// 
@@ -881,7 +881,7 @@ private: System::Windows::Forms::CheckBox^ checkBox2;
 			this->numeric_iters_to->Name = L"numeric_iters_to";
 			this->numeric_iters_to->Size = System::Drawing::Size(75, 20);
 			this->numeric_iters_to->TabIndex = 9;
-			this->numeric_iters_to->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 200, 0, 0, 0 });
+			this->numeric_iters_to->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 150, 0, 0, 0 });
 			// 
 			// label24
 			// 
@@ -1069,24 +1069,35 @@ private: System::Windows::Forms::CheckBox^ checkBox2;
 		int number_of_tests = DecToInt(numericUpDown2->Value);
 		number_of_tests -= 1;
 
+		DH.msg("");
+		DH.msg("fill test initialized ( push_back() )");
+		DH.msg("$amount_min = " + s(amount_min));
+		DH.msg("$amount_max = " + s(amount_max));
+		DH.msg("$number_of_tests = " + s(number_of_tests));
+
 		if (amount_max < amount_min) show_messagebox_on_input_error();
 		else {
+			DH.msg("vector ");
 			GL_POINTS_VECTOR.resize(0);
 			for (size_t i = 0; i < number_of_tests + 1; i++)
 			{
+				
 				GL_VECTOR.resize(0);
 				int amount = amount_min + (amount_max - amount_min) / number_of_tests * i;
 				if (vec_reserve_checkbox->Checked) GL_VECTOR.reserve(amount);
 				int res = timed_tests::fill(GL_VECTOR, (amount_max - amount_min) / number_of_tests * i);
 				GL_POINTS_VECTOR.push_back(res);
+				DH.msg("iteration " + s(i) + " done", true);
 			}
 			GL_POINTS_LIST.resize(0);
+			DH.msg("list ");
 			for (size_t i = 0; i < number_of_tests + 1; i++)
 			{
 				GL_LIST.resize(0);
 				int amount = amount_min + (amount_max - amount_min) / number_of_tests * i;
 				int res = timed_tests::fill(GL_LIST, (amount_max - amount_min) / number_of_tests * i);
 				GL_POINTS_LIST.push_back(res);
+				DH.msg("iteration " + s(i) + " done", true);
 			}
 
 			graph_refresh();
@@ -1227,20 +1238,26 @@ private: System::Void numericUpDown5_ValueChanged(System::Object^ sender, System
 
 		if (amount_max < amount_min) show_messagebox_on_input_error();
 		else{
+			DH.msg("vector: ");
 			GL_POINTS_VECTOR.resize(0);
 			for (size_t i = 0; i < number_of_tests + 1; i++)
 			{
 				amount = amount_min + step * i;
-				int res = timed_tests::iteration_test_big_struct(true, (amount_max - amount_min) / number_of_tests * i, (size_t)amount / 2, element_weight);
+				DH.msg("$test running with params: " + s(true) + ", " + s(amount) + ", " + s((size_t)amount / 2) + ", " + s((size_t)amount / 2) + ", " + s(element_weight));
+				int res = timed_tests::iteration_test_big_struct(true, amount, (size_t)amount / 2, element_weight);
 				GL_POINTS_VECTOR.push_back(res);
+				DH.msg("iteration " + s(i) + " done", true);
+
 			}
 			GL_POINTS_LIST.resize(0);
-
+			DH.msg("list: ");
 			for (size_t i = 0; i < number_of_tests + 1; i++)
 			{
 				amount = amount_min + step * i;
-				int res = timed_tests::iteration_test_big_struct(false, (amount_max - amount_min) / number_of_tests * i, (size_t)amount / 2, element_weight);
+				DH.msg("$test running with params: " + s(false) + ", " + s(amount) + ", " + s((size_t)amount / 2) + ", " + s((size_t)amount / 2) + ", " + s(element_weight));
+				int res = timed_tests::iteration_test_big_struct(false, amount, (size_t)amount / 2, element_weight);
 				GL_POINTS_LIST.push_back(res);
+				DH.msg("iteration " + s(i) + " done", true);
 			}
 			graph_refresh();
 			update_data();
@@ -1248,20 +1265,20 @@ private: System::Void numericUpDown5_ValueChanged(System::Object^ sender, System
 	}
 
 
-		   void show_messagebox_on_input_error() 
-		   {
-			   MessageBox::Show("ошибка ввода", "некоторые данные введены некорректно", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-		   }
-			private: System::Void checkBox2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-				upd_console();
-			}
-			private: System::Void checkBox3_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-				upd_console();
-			}
-			void upd_console() {
-				DH.debug(checkBox2->Checked);
-				DH.prefixes(checkBox3->Checked);
-			}
+	void show_messagebox_on_input_error() 
+	{
+		MessageBox::Show("ошибка ввода", "некоторые данные введены некорректно", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+	}
+	private: System::Void checkBox2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+		upd_console();
+	}
+	private: System::Void checkBox3_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+		upd_console();
+	}
+	void upd_console() {
+		DH.debug(checkBox2->Checked);
+		DH.prefixes(checkBox3->Checked);
+	}
 };
 };
 

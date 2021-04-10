@@ -156,7 +156,7 @@ namespace timed_tests {
 			for (size_t i = 0; i < amount; i++)
 			{
 				book buk = book(i, load);
-				cont.push_back(buk);
+				cont.insert(cont.begin(), buk);
 			}
 			auto end = std::chrono::steady_clock::now();
 			time = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count();
