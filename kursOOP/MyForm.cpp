@@ -103,7 +103,8 @@ System::Void MyForm::button6_Click(System::Object^ sender, System::EventArgs^ e)
 	int amount_max = DecToInt(numeric_iters_to->Value);
 	int element_weight = DecToInt(numeric_iter_weight->Value);
 	int number_of_tests = DecToInt(numeric_test_amount->Value);
-	number_of_tests -= 1;
+	bool random_potision = checkbox_iter_randpos->Checked;
+	//number_of_tests -= 1;
 
 	DH.msg("#big structs iteration test initialized");
 	DH.msg("$amount_min = " + s(amount_min));
@@ -117,11 +118,13 @@ System::Void MyForm::button6_Click(System::Object^ sender, System::EventArgs^ e)
 		tests_ranger TR = tests_ranger();
 
 		vector_iteration_test vit = vector_iteration_test(1000, element_weight, 10);
+		vit.set_randpos(random_potision);
 		TR.run(vit, number_of_tests, amount_min, amount_max);
 		GL_POINTS_VECTOR = TR.get_result_array();
 		CM.draw("vector time", TR.get_result_array());
 
 		list_iteration_test lit = list_iteration_test(1000, element_weight, 10);
+		lit.set_randpos(random_potision);
 		TR.run(lit, number_of_tests, amount_min, amount_max);
 		GL_POINTS_LIST = TR.get_result_array();
 		CM.draw("list time", TR.get_result_array());

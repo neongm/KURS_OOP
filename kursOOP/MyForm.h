@@ -151,6 +151,7 @@ namespace kursOOP {
 private: System::Windows::Forms::CheckBox^ checkBox3;
 private: System::Windows::Forms::CheckBox^ checkBox2;
 private: System::Windows::Forms::DataVisualization::Charting::Chart^ chart1;
+private: System::Windows::Forms::CheckBox^ checkbox_iter_randpos;
 
 
 
@@ -242,6 +243,7 @@ private: System::Windows::Forms::DataVisualization::Charting::Chart^ chart1;
 			this->label24 = (gcnew System::Windows::Forms::Label());
 			this->test_iteration_run = (gcnew System::Windows::Forms::Button());
 			this->label25 = (gcnew System::Windows::Forms::Label());
+			this->checkbox_iter_randpos = (gcnew System::Windows::Forms::CheckBox());
 			this->panel1->SuspendLayout();
 			this->panel4->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown2))->BeginInit();
@@ -465,18 +467,18 @@ private: System::Windows::Forms::DataVisualization::Charting::Chart^ chart1;
 			this->label5->AutoSize = true;
 			this->label5->Location = System::Drawing::Point(8, 0);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(60, 13);
+			this->label5->Size = System::Drawing::Size(82, 13);
 			this->label5->TabIndex = 8;
-			this->label5->Text = L"Vector time";
+			this->label5->Text = L"Vector time (ms)";
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
 			this->label6->Location = System::Drawing::Point(115, 0);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(45, 13);
+			this->label6->Size = System::Drawing::Size(67, 13);
 			this->label6->TabIndex = 9;
-			this->label6->Text = L"List time";
+			this->label6->Text = L"List time (ms)";
 			// 
 			// panel5
 			// 
@@ -781,6 +783,7 @@ private: System::Windows::Forms::DataVisualization::Charting::Chart^ chart1;
 			// panel12
 			// 
 			this->panel12->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->panel12->Controls->Add(this->checkbox_iter_randpos);
 			this->panel12->Controls->Add(this->label18);
 			this->panel12->Controls->Add(this->label19);
 			this->panel12->Controls->Add(this->numeric_iter_weight);
@@ -933,6 +936,16 @@ private: System::Windows::Forms::DataVisualization::Charting::Chart^ chart1;
 			this->label25->Size = System::Drawing::Size(54, 13);
 			this->label25->TabIndex = 0;
 			this->label25->Text = L"итерация";
+			// 
+			// checkbox_iter_randpos
+			// 
+			this->checkbox_iter_randpos->AutoSize = true;
+			this->checkbox_iter_randpos->Location = System::Drawing::Point(3, 0);
+			this->checkbox_iter_randpos->Name = L"checkbox_iter_randpos";
+			this->checkbox_iter_randpos->Size = System::Drawing::Size(100, 17);
+			this->checkbox_iter_randpos->TabIndex = 19;
+			this->checkbox_iter_randpos->Text = L"random position";
+			this->checkbox_iter_randpos->UseVisualStyleBackColor = true;
 			// 
 			// MyForm
 			// 

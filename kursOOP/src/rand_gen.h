@@ -1,11 +1,12 @@
 #pragma once
 #include <random>
 
+
 namespace rnd
 {
 	// iterators based implementation
 	template<typename It>
-	void fill_random_integers(It beg, It end, int min, int max)
+	inline void fill_random_integers(It beg, It end, int min, int max)
 	{
 		// random number generator based on
 		// example for uniform_int_distribution:
@@ -21,20 +22,20 @@ namespace rnd
 	}
 
 	// vector/min/max only
-	void fill_random_integers(std::vector<int>& vec, int min, int max)
+	inline void fill_random_integers(std::vector<int>& vec, int min, int max)
 	{
 		fill_random_integers(vec.begin(), vec.end(), min, max);
 	}
 
 	// vector/size/min/max
-	void fill_random_integers(std::vector<int>& vec, int size, int min = 0, int max = 1000)
+	inline void fill_random_integers(std::vector<int>& vec, int size, int min = 0, int max = 1000)
 	{
 		vec.resize(size);
 		fill_random_integers(vec.begin(), vec.end(), min, max);
 	}
 
 	// random integer
-	int random_integer(const int& min, const int& max)
+	inline int random_integer(const int& min, const int& max)
 	{
 		// same as fill_random_integers(), but for one number
 		std::random_device rd; // obtaining seed;
